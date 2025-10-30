@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://cfubqc631mup"]
+
+[ext_resource type="Script" uid="uid://bx4diu5kbj1gl" path="res://TrashItem.gd" id="1_aijkr"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_yj1kb"]
+size = Vector3(0.3, 0.3, 0.3)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g7tll"]
+albedo_color = Color(0.9678646, 0.92579764, 0.58620167, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_g1ylc"]
+size = Vector3(0.3, 0.3, 0.3)
+
+[node name="TrashItem" type="Area3D"]
+script = ExtResource("1_aijkr")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_yj1kb")
+surface_material_override/0 = SubResource("StandardMaterial3D_g7tll")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_g1ylc")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

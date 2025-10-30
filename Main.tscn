@@ -1,0 +1,147 @@
+[gd_scene load_steps=11 format=3 uid="uid://dmurky4qj1xnm"]
+
+[ext_resource type="Script" uid="uid://cf6vfql8wtx0y" path="res://player.gd" id="1_glv2v"]
+[ext_resource type="Script" uid="uid://b3bg8isg18qtr" path="res://main.gd" id="1_r0du0"]
+[ext_resource type="PackedScene" uid="uid://yhw0f86ycyyx" path="res://Boss.tscn" id="3_r0du0"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_rxg2q"]
+size = Vector2(20, 20)
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_glv2v"]
+
+[sub_resource type="Environment" id="Environment_uu6xs"]
+background_mode = 1
+background_color = Color(0.4, 0.4, 0.4, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_r0du0"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r0du0"]
+albedo_color = Color(0.19853029, 0.52776414, 0.5652041, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_cm0pq"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_r0du0"]
+
+[node name="Main" type="Node3D"]
+script = ExtResource("1_r0du0")
+
+[node name="Floor" type="StaticBody3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor"]
+mesh = SubResource("PlaneMesh_rxg2q")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
+shape = SubResource("WorldBoundaryShape3D_glv2v")
+
+[node name="SunLight" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.70710677, -0.49999997, 0.49999997, 0, 0.70710677, 0.70710677, -0.70710677, -0.49999997, 0.49999997, 0, 0, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_uu6xs")
+
+[node name="Player" type="CharacterBody3D" parent="." groups=["player"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+script = ExtResource("1_glv2v")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Player"]
+mesh = SubResource("BoxMesh_r0du0")
+surface_material_override/0 = SubResource("StandardMaterial3D_r0du0")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
+shape = SubResource("BoxShape3D_cm0pq")
+
+[node name="Camera3D" type="Camera3D" parent="Player"]
+transform = Transform3D(1, 0, 0, 0, 0.9659258, 0.25881904, 0, -0.25881904, 0.9659258, 0, 1.5, 3)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ScoreLabel" type="Label" parent="CanvasLayer/Control"]
+layout_mode = 1
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 68.0
+offset_bottom = 43.0
+text = "ゴミ：0"
+
+[node name="TimerLabel" type="Label" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = 984.0
+offset_top = 20.0
+offset_right = 1090.0
+offset_bottom = 43.0
+grow_horizontal = 0
+text = "定時まで：30.0"
+
+[node name="ResultUI" type="Control" parent="CanvasLayer"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/ResultUI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.627451)
+
+[node name="ResultLabel" type="Label" parent="CanvasLayer/ResultUI"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 50
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/ResultUI"]
+custom_minimum_size = Vector2(300, 80)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -150.0
+offset_top = -80.0
+offset_right = 150.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="RetryButton" type="Button" parent="CanvasLayer/ResultUI/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "まだ働く"
+
+[node name="TitleButton" type="Button" parent="CanvasLayer/ResultUI/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "帰宅する"
+
+[node name="Boss" parent="." instance=ExtResource("3_r0du0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.6883764, 0, -9.088512)
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Boss"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_r0du0")
