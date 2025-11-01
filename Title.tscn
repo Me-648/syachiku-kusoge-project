@@ -1,0 +1,94 @@
+[gd_scene load_steps=3 format=3 uid="uid://cqvabsuo5vu44"]
+
+[ext_resource type="Script" uid="uid://odd02nb1qjpw" path="res://Title.gd" id="1_c0dwi"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c0dwi"]
+bg_color = Color(0.19434929, 0.19434926, 0.19434926, 1)
+
+[node name="CanvasLayer" type="CanvasLayer"]
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_c0dwi")
+
+[node name="TitleLabel" type="Label" parent="Control"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -289.5
+offset_top = 150.0
+offset_right = 289.5
+offset_bottom = 239.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 64
+text = "俺は定時で帰りたい！"
+horizontal_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -27.5
+offset_top = 26.0
+offset_right = 27.5
+offset_bottom = 104.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 16
+
+[node name="StartButton" type="Button" parent="Control/VBoxContainer"]
+layout_mode = 2
+text = "スタート"
+
+[node name="HowToButton" type="Button" parent="Control/VBoxContainer"]
+layout_mode = 2
+text = "遊び方"
+
+[node name="HowToPanel" type="Panel" parent="Control"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_c0dwi")
+
+[node name="HowToLabel" type="Label" parent="Control/HowToPanel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -234.0
+offset_top = 200.0
+offset_right = 234.0
+offset_bottom = 301.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 24
+text = "定時まで残りわずか...残る仕事は雑用の「ゴミ拾い」！
+上司の長話に気をつけながら、さっさと仕事を終わらせて定時に帰ろう！！
+操作：WASDまたは矢印キーで移動、マウスでカメラ操作"
+
+[node name="CloseButton" type="Button" parent="Control/HowToPanel"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -24.5
+offset_top = -278.0
+offset_right = 24.5
+offset_bottom = -247.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "閉じる"

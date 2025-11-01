@@ -149,4 +149,4 @@ func restart_game():
 	get_tree().reload_current_scene()
 
 func go_to_title():
-	get_tree().change_scene_to_file("res://Title.tscn")  # タイトル画面を後で作成
+	get_tree().change_scene_to_file("res://Title.tscn")
