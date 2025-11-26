@@ -53,6 +53,10 @@ text = "スタート"
 layout_mode = 2
 text = "遊び方"
 
+[node name="CreditButton" type="Button" parent="Control/VBoxContainer"]
+layout_mode = 2
+text = "クレジット"
+
 [node name="HowToPanel" type="Panel" parent="Control"]
 visible = false
 layout_mode = 1
@@ -76,7 +80,7 @@ grow_horizontal = 2
 theme_override_font_sizes/font_size = 24
 text = "定時まで残りわずか...残る仕事は雑用の「ゴミ拾い」！
 上司の長話に気をつけながら、さっさと仕事を終わらせて定時に帰ろう！！
-操作：WASDまたは矢印キーで移動、マウスでカメラ操作"
+操作：WASDまたは矢印キーで移動、マウスでカメラ操作、spaceキーでジャンプ"
 
 [node name="CloseButton" type="Button" parent="Control/HowToPanel"]
 layout_mode = 1
@@ -89,6 +93,51 @@ offset_left = -24.5
 offset_top = -278.0
 offset_right = 24.5
 offset_bottom = -247.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "閉じる"
+
+[node name="Credit" type="Panel" parent="Control"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_c0dwi")
+
+[node name="CreditLabel" type="Label" parent="Control/Credit"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -332.0
+offset_top = 150.0
+offset_right = 332.0
+offset_bottom = 443.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 24
+text = "【3Dモデルクレジット】
+
+<人モデル>
+Human with few faces by Wyatt Roy [CC-BY] via Poly Pizza
+<椅子>
+Office Chair by CMHT Oculus [CC-BY] via Poly Pizza
+<机>
+Adjustable Desk by jeff cobesign [CC-BY] via Poly Pizza"
+
+[node name="CloseButton" type="Button" parent="Control/Credit"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -24.5
+offset_top = -148.0
+offset_right = 24.5
+offset_bottom = -117.0
 grow_horizontal = 2
 grow_vertical = 0
 text = "閉じる"

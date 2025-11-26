@@ -20,6 +20,10 @@ config/icon="res://icon.svg"
 window/size/mode=3
 window/stretch/mode="canvas_items"
 
+[filesystem]
+
+import/blender/enabled=false
+
 [input]
 
 ui_cancel={
