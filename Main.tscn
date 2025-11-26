@@ -215,168 +215,182 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.6883764, 0, -9.088512)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 shape = SubResource("BoxShape3D_r0du0")
 
-[node name="Desk" type="Node3D" parent="."]
+[node name="DeskSet" type="Node3D" parent="."]
 
-[node name="Adjustable Desk" parent="Desk" instance=ExtResource("4_cm0pq")]
+[node name="Desk" type="Node3D" parent="DeskSet"]
+
+[node name="Adjustable Desk" parent="DeskSet/Desk" instance=ExtResource("4_cm0pq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.9736774, 0, 0.12850165)
 
-[node name="Desk1_Collision" type="StaticBody3D" parent="Desk"]
+[node name="Desk1_Collision" type="StaticBody3D" parent="DeskSet/Desk"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Desk/Desk1_Collision"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DeskSet/Desk/Desk1_Collision"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0.5, 0.1)
 shape = SubResource("BoxShape3D_wkp8b")
 
-[node name="Desk2" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4.1372385)
-
-[node name="Adjustable Desk" parent="Desk2" instance=ExtResource("4_cm0pq")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.9736774, 0, 0.12850165)
-
-[node name="Desk1_Collision" type="StaticBody3D" parent="Desk2"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Desk2/Desk1_Collision"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0.5, 0.1)
-shape = SubResource("BoxShape3D_wkp8b")
-
-[node name="Desk3" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.9261365)
-
-[node name="Adjustable Desk" parent="Desk3" instance=ExtResource("4_cm0pq")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.9736774, 0, 0.12850165)
-
-[node name="Desk1_Collision" type="StaticBody3D" parent="Desk3"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Desk3/Desk1_Collision"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0.5, 0.1)
-shape = SubResource("BoxShape3D_wkp8b")
-
-[node name="Desk4" type="Node3D" parent="."]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -6.7117724, 0, -3.2897058)
-
-[node name="Adjustable Desk" parent="Desk4" instance=ExtResource("4_cm0pq")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.9736774, 0, 0.12850165)
-
-[node name="Desk1_Collision" type="StaticBody3D" parent="Desk4"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Desk4/Desk1_Collision"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0.5, 0.1)
-shape = SubResource("BoxShape3D_wkp8b")
-
-[node name="Desk5" type="Node3D" parent="."]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -1.7407408, 0, -1.4409723)
-
-[node name="Adjustable Desk" parent="Desk5" instance=ExtResource("4_cm0pq")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.9736774, 0, 0.12850165)
-
-[node name="Desk1_Collision" type="StaticBody3D" parent="Desk5"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Desk5/Desk1_Collision"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0.5, 0.1)
-shape = SubResource("BoxShape3D_wkp8b")
-
-[node name="Desk6" type="Node3D" parent="."]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -1.7407408, 0, 3.068791)
-
-[node name="Adjustable Desk" parent="Desk6" instance=ExtResource("4_cm0pq")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.9736774, 0, 0.12850165)
-
-[node name="Desk1_Collision" type="StaticBody3D" parent="Desk6"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Desk6/Desk1_Collision"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0.5, 0.1)
-shape = SubResource("BoxShape3D_wkp8b")
-
-[node name="Desk7" type="Node3D" parent="."]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -1.7407408, 0, 7.536575)
-
-[node name="Adjustable Desk" parent="Desk7" instance=ExtResource("4_cm0pq")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.9736774, 0, 0.12850165)
-
-[node name="Desk1_Collision" type="StaticBody3D" parent="Desk7"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Desk7/Desk1_Collision"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0.5, 0.1)
-shape = SubResource("BoxShape3D_wkp8b")
-
-[node name="Chair" type="Node3D" parent="."]
-
-[node name="Office Chair" parent="Chair" instance=ExtResource("5_fos0i")]
-transform = Transform3D(-1.3113416e-09, 0, 0.03, 0, 0.03, 0, -0.03, 0, -1.3113416e-09, -0.06331557, 0, 8.246832)
-
-[node name="Chair1_Collision" type="StaticBody3D" parent="Chair"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Chair/Chair1_Collision"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.4201503, 0.7, -1.9274746)
-shape = SubResource("BoxShape3D_wkp8b")
-
-[node name="Chair2" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4.238681)
-
-[node name="Office Chair" parent="Chair2" instance=ExtResource("5_fos0i")]
-transform = Transform3D(-1.3113416e-09, 0, 0.03, 0, 0.03, 0, -0.03, 0, -1.3113416e-09, -0.06331557, 0, 8.246832)
-
-[node name="Chair1_Collision" type="StaticBody3D" parent="Chair2"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Chair2/Chair1_Collision"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.4201503, 0.7, -1.9274746)
-shape = SubResource("BoxShape3D_wkp8b")
-
-[node name="Chair3" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 9.083225)
-
-[node name="Office Chair" parent="Chair3" instance=ExtResource("5_fos0i")]
-transform = Transform3D(-0.0032987962, 0, 0.029818079, 0, 0.03, 0, -0.029818079, 0, -0.0032987962, 0.7494491, 0, 7.5077896)
-
-[node name="Chair1_Collision" type="StaticBody3D" parent="Chair3"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Chair3/Chair1_Collision"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.4201503, 0.7, -1.9274746)
-shape = SubResource("BoxShape3D_wkp8b")
-
-[node name="Chair4" type="Node3D" parent="."]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -2.183679, 0, 2.5066042)
-
-[node name="Office Chair" parent="Chair4" instance=ExtResource("5_fos0i")]
-transform = Transform3D(-1.3113416e-09, 0, 0.03, 0, 0.03, 0, -0.03, 0, -1.3113416e-09, -0.06331557, 0, 8.246832)
-
-[node name="Chair1_Collision" type="StaticBody3D" parent="Chair4"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Chair4/Chair1_Collision"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.4201503, 0.7, -1.9274746)
-shape = SubResource("BoxShape3D_wkp8b")
-
-[node name="Chair5" type="Node3D" parent="."]
+[node name="Chair5" type="Node3D" parent="DeskSet"]
 transform = Transform3D(-0.9693468, 0, -0.24569662, 0, 1, 0, 0.24569662, 0, -0.9693468, -2.183679, 0, 0.0054774284)
 
-[node name="Office Chair" parent="Chair5" instance=ExtResource("5_fos0i")]
+[node name="Office Chair" parent="DeskSet/Chair5" instance=ExtResource("5_fos0i")]
 transform = Transform3D(-1.3113416e-09, 0, 0.03, 0, 0.03, 0, -0.03, 0, -1.3113416e-09, -0.06331557, 0, 8.246832)
 
-[node name="Chair1_Collision" type="StaticBody3D" parent="Chair5"]
+[node name="Chair1_Collision" type="StaticBody3D" parent="DeskSet/Chair5"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Chair5/Chair1_Collision"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DeskSet/Chair5/Chair1_Collision"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.4201503, 0.7, -1.9274746)
 shape = SubResource("BoxShape3D_wkp8b")
 
-[node name="Chair6" type="Node3D" parent="."]
+[node name="DeskSet2" type="Node3D" parent="."]
+
+[node name="Desk2" type="Node3D" parent="DeskSet2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4.1372385)
+
+[node name="Adjustable Desk" parent="DeskSet2/Desk2" instance=ExtResource("4_cm0pq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.9736774, 0, 0.12850165)
+
+[node name="Desk1_Collision" type="StaticBody3D" parent="DeskSet2/Desk2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DeskSet2/Desk2/Desk1_Collision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0.5, 0.1)
+shape = SubResource("BoxShape3D_wkp8b")
+
+[node name="Chair6" type="Node3D" parent="DeskSet2"]
 transform = Transform3D(-0.99480283, 0, 0.10182019, 0, 1, 0, -0.10182019, 0, -0.99480283, -2.0620155, 0, -6.259012)
 
-[node name="Office Chair" parent="Chair6" instance=ExtResource("5_fos0i")]
+[node name="Office Chair" parent="DeskSet2/Chair6" instance=ExtResource("5_fos0i")]
 transform = Transform3D(-1.3113416e-09, 0, 0.03, 0, 0.03, 0, -0.03, 0, -1.3113416e-09, -0.06331557, 0, 8.246832)
 
-[node name="Chair1_Collision" type="StaticBody3D" parent="Chair6"]
+[node name="Chair1_Collision" type="StaticBody3D" parent="DeskSet2/Chair6"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Chair6/Chair1_Collision"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DeskSet2/Chair6/Chair1_Collision"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.4201503, 0.7, -1.9274746)
 shape = SubResource("BoxShape3D_wkp8b")
 
-[node name="Chair7" type="Node3D" parent="."]
-transform = Transform3D(0.5267481, 0, -0.8500214, 0, 1, 0, 0.8500214, 0, 0.5267481, -5.074224, 0, -1.4087992)
+[node name="DeskSet3" type="Node3D" parent="."]
 
-[node name="Office Chair" parent="Chair7" instance=ExtResource("5_fos0i")]
+[node name="Desk3" type="Node3D" parent="DeskSet3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.9261365)
+
+[node name="Adjustable Desk" parent="DeskSet3/Desk3" instance=ExtResource("4_cm0pq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.9736774, 0, 0.12850165)
+
+[node name="Desk1_Collision" type="StaticBody3D" parent="DeskSet3/Desk3"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DeskSet3/Desk3/Desk1_Collision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0.5, 0.1)
+shape = SubResource("BoxShape3D_wkp8b")
+
+[node name="Chair4" type="Node3D" parent="DeskSet3"]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -2.183679, 0, 2.5066042)
+
+[node name="Office Chair" parent="DeskSet3/Chair4" instance=ExtResource("5_fos0i")]
 transform = Transform3D(-1.3113416e-09, 0, 0.03, 0, 0.03, 0, -0.03, 0, -1.3113416e-09, -0.06331557, 0, 8.246832)
 
-[node name="Chair1_Collision" type="StaticBody3D" parent="Chair7"]
+[node name="Chair1_Collision" type="StaticBody3D" parent="DeskSet3/Chair4"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Chair7/Chair1_Collision"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DeskSet3/Chair4/Chair1_Collision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.4201503, 0.7, -1.9274746)
+shape = SubResource("BoxShape3D_wkp8b")
+
+[node name="DeskSet4" type="Node3D" parent="."]
+
+[node name="Desk4" type="Node3D" parent="DeskSet4"]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -6.7117724, 0, -3.2897058)
+
+[node name="Adjustable Desk" parent="DeskSet4/Desk4" instance=ExtResource("4_cm0pq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.9736774, 0, 0.12850165)
+
+[node name="Desk1_Collision" type="StaticBody3D" parent="DeskSet4/Desk4"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DeskSet4/Desk4/Desk1_Collision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0.5, 0.1)
+shape = SubResource("BoxShape3D_wkp8b")
+
+[node name="Chair7" type="Node3D" parent="DeskSet4"]
+transform = Transform3D(0.5267481, 0, -0.8500214, 0, 1, 0, 0.8500214, 0, 0.5267481, -5.074224, 0, -1.4087992)
+
+[node name="Office Chair" parent="DeskSet4/Chair7" instance=ExtResource("5_fos0i")]
+transform = Transform3D(-1.3113416e-09, 0, 0.03, 0, 0.03, 0, -0.03, 0, -1.3113416e-09, -0.06331557, 0, 8.246832)
+
+[node name="Chair1_Collision" type="StaticBody3D" parent="DeskSet4/Chair7"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DeskSet4/Chair7/Chair1_Collision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.4201503, 0.7, -1.9274746)
+shape = SubResource("BoxShape3D_wkp8b")
+
+[node name="DeskSet5" type="Node3D" parent="."]
+
+[node name="Desk5" type="Node3D" parent="DeskSet5"]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -1.7407408, 0, -1.4409723)
+
+[node name="Adjustable Desk" parent="DeskSet5/Desk5" instance=ExtResource("4_cm0pq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.9736774, 0, 0.12850165)
+
+[node name="Desk1_Collision" type="StaticBody3D" parent="DeskSet5/Desk5"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DeskSet5/Desk5/Desk1_Collision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0.5, 0.1)
+shape = SubResource("BoxShape3D_wkp8b")
+
+[node name="Chair" type="Node3D" parent="DeskSet5"]
+
+[node name="Office Chair" parent="DeskSet5/Chair" instance=ExtResource("5_fos0i")]
+transform = Transform3D(-1.3113416e-09, 0, 0.03, 0, 0.03, 0, -0.03, 0, -1.3113416e-09, -0.06331557, 0, 8.246832)
+
+[node name="Chair1_Collision" type="StaticBody3D" parent="DeskSet5/Chair"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DeskSet5/Chair/Chair1_Collision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.4201503, 0.7, -1.9274746)
+shape = SubResource("BoxShape3D_wkp8b")
+
+[node name="DeskSet6" type="Node3D" parent="."]
+
+[node name="Chair2" type="Node3D" parent="DeskSet6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4.238681)
+
+[node name="Office Chair" parent="DeskSet6/Chair2" instance=ExtResource("5_fos0i")]
+transform = Transform3D(-1.3113416e-09, 0, 0.03, 0, 0.03, 0, -0.03, 0, -1.3113416e-09, -0.06331557, 0, 8.246832)
+
+[node name="Chair1_Collision" type="StaticBody3D" parent="DeskSet6/Chair2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DeskSet6/Chair2/Chair1_Collision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.4201503, 0.7, -1.9274746)
+shape = SubResource("BoxShape3D_wkp8b")
+
+[node name="Desk6" type="Node3D" parent="DeskSet6"]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -1.7407408, 0, 3.068791)
+
+[node name="Adjustable Desk" parent="DeskSet6/Desk6" instance=ExtResource("4_cm0pq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.9736774, 0, 0.12850165)
+
+[node name="Desk1_Collision" type="StaticBody3D" parent="DeskSet6/Desk6"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DeskSet6/Desk6/Desk1_Collision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0.5, 0.1)
+shape = SubResource("BoxShape3D_wkp8b")
+
+[node name="DeskSet7" type="Node3D" parent="."]
+
+[node name="Desk7" type="Node3D" parent="DeskSet7"]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -1.7407408, 0, 7.536575)
+
+[node name="Adjustable Desk" parent="DeskSet7/Desk7" instance=ExtResource("4_cm0pq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.9736774, 0, 0.12850165)
+
+[node name="Desk1_Collision" type="StaticBody3D" parent="DeskSet7/Desk7"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DeskSet7/Desk7/Desk1_Collision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0.5, 0.1)
+shape = SubResource("BoxShape3D_wkp8b")
+
+[node name="Chair3" type="Node3D" parent="DeskSet7"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 9.083225)
+
+[node name="Office Chair" parent="DeskSet7/Chair3" instance=ExtResource("5_fos0i")]
+transform = Transform3D(-0.0032987962, 0, 0.029818079, 0, 0.03, 0, -0.029818079, 0, -0.0032987962, 0.7494491, 0, 7.5077896)
+
+[node name="Chair1_Collision" type="StaticBody3D" parent="DeskSet7/Chair3"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DeskSet7/Chair3/Chair1_Collision"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.4201503, 0.7, -1.9274746)
 shape = SubResource("BoxShape3D_wkp8b")
