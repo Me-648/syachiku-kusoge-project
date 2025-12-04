@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://dmurky4qj1xnm"]
+[gd_scene load_steps=31 format=3 uid="uid://dmurky4qj1xnm"]
 
 [ext_resource type="Script" uid="uid://cf6vfql8wtx0y" path="res://player.gd" id="1_glv2v"]
 [ext_resource type="Script" uid="uid://b3bg8isg18qtr" path="res://main.gd" id="1_r0du0"]
@@ -7,7 +7,11 @@
 [ext_resource type="PackedScene" uid="uid://bbvw5pw1st7sd" path="res://assets/Adjustable Desk.glb" id="4_cm0pq"]
 [ext_resource type="PackedScene" uid="uid://ba4d7u5cckpbo" path="res://assets/Office Chair.glb" id="5_fos0i"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3dxm6"]
+albedo_color = Color(0.39308554, 0.3930855, 0.39308548, 1)
+
 [sub_resource type="PlaneMesh" id="PlaneMesh_rxg2q"]
+material = SubResource("StandardMaterial3D_3dxm6")
 size = Vector2(20, 20)
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_glv2v"]

@@ -106,24 +106,41 @@ func game_over_by_boss():
 # =========================================================
 
 func spawn_trash_items():
-	# 既存の手動で置いたゴミアイテムを全て削除（自動生成に切り替えるため）
+	# 既存のゴミを削除
 	for child in get_children():
 		if child.name.begins_with("TrashItem"):
 			child.queue_free()
-			
-	# 指定された数だけゴミを生成
-	for i in range(TOTAL_TRASH_COUNT):
-		var trash_instance = trash_scene.instantiate() 
+	
+	var spawned_count = 0
+	var max_attempts = TOTAL_TRASH_COUNT * 10  # 無限ループ防止
+	var attempt = 0
+	
+	while spawned_count < TOTAL_TRASH_COUNT and attempt < max_attempts:
+		attempt += 1
 		
-		# ランダムな位置を決定 (床の範囲20x20m内でランダムに配置)
+		# ランダムな位置を決定
 		var random_x = randf_range(-9.0, 9.0)
 		var random_z = randf_range(-9.0, 9.0)
+		var test_position = Vector3(random_x, 1.0, random_z)  # 高い位置から判定
 		
-		# 位置を設定（Y軸は床に置くため0.15m）
-		trash_instance.position = Vector3(random_x, 0.15, random_z) 
+		# その位置に障害物がないかチェック
+		var space_state = get_world_3d().direct_space_state
+		var query = PhysicsRayQueryParameters3D.create(
+			test_position,  # 上から
+			Vector3(random_x, 0.0, random_z)  # 下へ
+		)
+		query.collision_mask = 1  # レイヤー1（床や机）を検出
 		
-		# Mainノードの子ノードとしてシーンに追加
-		add_child(trash_instance)
+		var result = space_state.intersect_ray(query)
+		
+		# 床に当たった場合のみ配置（机の下には置かない）
+		if result and result.collider.name.contains("Floor"):
+			var trash_instance = trash_scene.instantiate()
+			trash_instance.position = Vector3(random_x, 0.15, random_z)
+			add_child(trash_instance)
+			spawned_count += 1
+	
+	print("✅ ゴミを", spawned_count, "個配置しました")
 
 # =========================================================
 # 9. ゲームクリア処理

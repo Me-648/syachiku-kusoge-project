@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://cfubqc631mup"]
+[gd_scene load_steps=6 format=3 uid="uid://cfubqc631mup"]
 
 [ext_resource type="Script" uid="uid://bx4diu5kbj1gl" path="res://TrashItem.gd" id="1_aijkr"]
+[ext_resource type="PackedScene" uid="uid://drens03q2ulvh" path="res://assets/Debris Papers.glb" id="2_yj1kb"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_yj1kb"]
 size = Vector3(0.3, 0.3, 0.3)
@@ -9,16 +10,21 @@ size = Vector3(0.3, 0.3, 0.3)
 albedo_color = Color(0.9678646, 0.92579764, 0.58620167, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_g1ylc"]
-size = Vector3(0.3, 0.3, 0.3)
+size = Vector3(0.7, 0.1, 0.7)
 
 [node name="TrashItem" type="Area3D"]
 script = ExtResource("1_aijkr")
 
+[node name="Root Scene" parent="." instance=ExtResource("2_yj1kb")]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, -0.1, 0)
+
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+visible = false
 mesh = SubResource("BoxMesh_yj1kb")
 surface_material_override/0 = SubResource("StandardMaterial3D_g7tll")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.15, 0, 0.1)
 shape = SubResource("BoxShape3D_g1ylc")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

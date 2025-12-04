@@ -112,10 +112,10 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -332.0
-offset_top = 150.0
-offset_right = 332.0
-offset_bottom = 443.0
+offset_left = -367.5
+offset_top = 100.0
+offset_right = 367.5
+offset_bottom = 467.0
 grow_horizontal = 2
 theme_override_font_sizes/font_size = 24
 text = "【3Dモデルクレジット】
@@ -125,7 +125,9 @@ Human with few faces by Wyatt Roy [CC-BY] via Poly Pizza
 <椅子>
 Office Chair by CMHT Oculus [CC-BY] via Poly Pizza
 <机>
-Adjustable Desk by jeff cobesign [CC-BY] via Poly Pizza"
+Adjustable Desk by jeff cobesign [CC-BY] via Poly Pizza
+<紙>
+Debris Papers by Quaternius (https://poly.pizza/m/CCRSdAJxsD)"
 
 [node name="CloseButton" type="Button" parent="Control/Credit"]
 layout_mode = 1
@@ -135,9 +137,9 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -24.5
-offset_top = -148.0
+offset_top = -98.0
 offset_right = 24.5
-offset_bottom = -117.0
+offset_bottom = -67.0
 grow_horizontal = 2
 grow_vertical = 0
 text = "閉じる"
