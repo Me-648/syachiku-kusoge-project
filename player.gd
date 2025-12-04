@@ -10,7 +10,7 @@ const MOUSE_SENSITIVITY = 0.002
 
 # プレイヤーが動くスピードを設定します（歩く速さ）
 const SPEED = 5.5 
-const JUMP_VELOCITY = 6.0
+const JUMP_VELOCITY = 5.7
 
 # 重力の設定（Godotのプロジェクト設定から自動で取得します）
 @export var gravity = 15.0 

@@ -5,10 +5,10 @@ extends Node3D
 # =========================================================
 
 var score = 0                       # ゴミを拾った数（スコア）
-var game_time = 30.0                # 制限時間（30秒からスタート）
+var game_time = 20.0                # 制限時間（20秒からスタート）
 var is_game_over = false            # ゲーム終了フラグ
 
-const TOTAL_TRASH_COUNT = 5         # オフィスに配置するゴミの総数
+const TOTAL_TRASH_COUNT = 10         # オフィスに配置するゴミの総数
 var trash_scene = preload("res://TrashItem.tscn") # TrashItemシーンを事前に読み込む
 
 # =========================================================

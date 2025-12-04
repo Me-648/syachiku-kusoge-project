@@ -1,6 +1,6 @@
 extends CharacterBody3D
 
-const SPEED = 3.0 
+const SPEED = 3.5
 
 @onready var main_node = get_tree().root.get_node("Main")
 var player_node: CharacterBody3D = null

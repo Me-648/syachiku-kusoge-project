@@ -1,10 +1,8 @@
 extends Control
 
-# ... 既存の変数 ...
 @onready var start_button = $VBoxContainer/StartButton
 @onready var howto_button = $VBoxContainer/HowToButton
 
-# ★ 修正点 1: ノード名が「CreditButton」になっているため修正
 @onready var credits_button = $VBoxContainer/CreditButton 
 
 @onready var howto_panel = $HowToPanel
@@ -34,11 +32,11 @@ func _on_howto_pressed():
 func _on_close_howto_pressed():
 	howto_panel.visible = false
 
-# ★ New: クレジットパネルを開く
+# クレジットパネルを開く
 func _on_credits_pressed():
 	credits_panel.visible = true
 
-# ★ New: クレジットパネルを閉じる
+# クレジットパネルを閉じる
 func _on_close_credits_pressed():
 	credits_panel.visible = false
 
