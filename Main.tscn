@@ -1,11 +1,14 @@
-[gd_scene load_steps=31 format=3 uid="uid://dmurky4qj1xnm"]
+[gd_scene load_steps=34 format=3 uid="uid://dmurky4qj1xnm"]
 
 [ext_resource type="Script" uid="uid://cf6vfql8wtx0y" path="res://player.gd" id="1_glv2v"]
 [ext_resource type="Script" uid="uid://b3bg8isg18qtr" path="res://main.gd" id="1_r0du0"]
 [ext_resource type="Sky" uid="uid://bim2bw42eb7y0" path="res://assets/EveningSkyHDRI038A_1K.tres" id="2_3dxm6"]
 [ext_resource type="PackedScene" uid="uid://yhw0f86ycyyx" path="res://Boss.tscn" id="3_r0du0"]
 [ext_resource type="PackedScene" uid="uid://bbvw5pw1st7sd" path="res://assets/Adjustable Desk.glb" id="4_cm0pq"]
+[ext_resource type="AudioStream" uid="uid://d4kqer26m3cd1" path="res://sounds/JumpSE.mp3" id="4_lgr22"]
 [ext_resource type="PackedScene" uid="uid://ba4d7u5cckpbo" path="res://assets/Office Chair.glb" id="5_fos0i"]
+[ext_resource type="AudioStream" uid="uid://blyhouiqmglaq" path="res://sounds/決定ボタンを押す32.mp3" id="8_03owx"]
+[ext_resource type="AudioStream" uid="uid://dhgy0wajbmtme" path="res://sounds/ニュッ3.mp3" id="8_trn2v"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3dxm6"]
 albedo_color = Color(0.39308554, 0.3930855, 0.39308548, 1)
@@ -155,6 +158,9 @@ shape = SubResource("BoxShape3D_cm0pq")
 
 [node name="Camera3D" type="Camera3D" parent="Player"]
 transform = Transform3D(1, 0, 0, 0, 0.9659258, 0.25881904, 0, -0.25881904, 0.9659258, 0, 1.5, 3)
+
+[node name="JumpSE" type="AudioStreamPlayer3D" parent="Player"]
+stream = ExtResource("4_lgr22")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -430,3 +436,11 @@ transform = Transform3D(-0.0032987962, 0, 0.029818079, 0, 0.03, 0, -0.029818079,
 [node name="CollisionShape3D" type="CollisionShape3D" parent="DeskSet7/Chair3/Chair1_Collision"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.4201503, 0.7, -1.9274746)
 shape = SubResource("BoxShape3D_wkp8b")
+
+[node name="ClickSE" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_03owx")
+
+[node name="PickupSE" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_trn2v")
+
+[connection signal="finished" from="ClickSE" to="." method="_on_click_se_finished"]

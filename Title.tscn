@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://cqvabsuo5vu44"]
+[gd_scene load_steps=4 format=3 uid="uid://cqvabsuo5vu44"]
 
 [ext_resource type="Script" uid="uid://odd02nb1qjpw" path="res://Title.gd" id="1_c0dwi"]
+[ext_resource type="AudioStream" uid="uid://blyhouiqmglaq" path="res://sounds/決定ボタンを押す32.mp3" id="2_ax32a"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c0dwi"]
 bg_color = Color(0.19434929, 0.19434926, 0.19434926, 1)
@@ -80,7 +81,7 @@ grow_horizontal = 2
 theme_override_font_sizes/font_size = 24
 text = "定時まで残りわずか...残る仕事は雑用の「ゴミ拾い」！
 上司の長話に気をつけながら、さっさと仕事を終わらせて定時に帰ろう！！
-操作：WASDまたは矢印キーで移動、マウスでカメラ操作、spaceキーでジャンプ"
+操作：WASDまたは矢印キーで移動、マウスでカメラ操作、左クリックでジャンプ"
 
 [node name="CloseButton" type="Button" parent="Control/HowToPanel"]
 layout_mode = 1
@@ -143,3 +144,6 @@ offset_bottom = -67.0
 grow_horizontal = 2
 grow_vertical = 0
 text = "閉じる"
+
+[node name="UISound" type="AudioStreamPlayer" parent="Control"]
+stream = ExtResource("2_ax32a")

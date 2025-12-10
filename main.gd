@@ -66,6 +66,7 @@ func add_score():
 		return
 		
 	score += 1
+	$PickupSE.play()
 	
 	# ゴミを拾うと時間を1秒回復させる（要件定義より）
 	game_time += 1.0 
@@ -163,7 +164,22 @@ func show_result_ui(message: String):
 	
 
 func restart_game():
-	get_tree().reload_current_scene()
+	next_scene_path = get_tree().current_scene.scene_file_path
+	$ClickSE.play()
 
 func go_to_title():
-	get_tree().change_scene_to_file("res://Title.tscn")
+	next_scene_path = "res://Title.tscn"
+	$ClickSE.play()
+
+
+var next_scene_path = ""
+
+
+
+func _on_click_se_finished():
+	if next_scene_path == "":
+		return
+
+	var path = next_scene_path
+	next_scene_path = ""
+	get_tree().change_scene_to_file(path)
