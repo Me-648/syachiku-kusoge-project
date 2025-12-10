@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://dmurky4qj1xnm"]
+[gd_scene load_steps=35 format=3 uid="uid://dmurky4qj1xnm"]
 
 [ext_resource type="Script" uid="uid://cf6vfql8wtx0y" path="res://player.gd" id="1_glv2v"]
 [ext_resource type="Script" uid="uid://b3bg8isg18qtr" path="res://main.gd" id="1_r0du0"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://ba4d7u5cckpbo" path="res://assets/Office Chair.glb" id="5_fos0i"]
 [ext_resource type="AudioStream" uid="uid://blyhouiqmglaq" path="res://sounds/決定ボタンを押す32.mp3" id="8_03owx"]
 [ext_resource type="AudioStream" uid="uid://dhgy0wajbmtme" path="res://sounds/ニュッ3.mp3" id="8_trn2v"]
+[ext_resource type="AudioStream" uid="uid://bsr7ft3q8qdlm" path="res://sounds/ショック1.mp3" id="10_wkp8b"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3dxm6"]
 albedo_color = Color(0.39308554, 0.3930855, 0.39308548, 1)
@@ -220,9 +221,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -20.0
-offset_top = -11.5
+offset_top = -224.0
 offset_right = 20.0
-offset_bottom = 11.5
+offset_bottom = -155.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 50
@@ -249,6 +250,68 @@ text = "まだ働く"
 layout_mode = 2
 theme_override_font_sizes/font_size = 16
 text = "帰宅する"
+
+[node name="BossTalkUI" type="Control" parent="CanvasLayer"]
+visible = false
+layout_mode = 3
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/BossTalkUI"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.627451)
+
+[node name="TextLabel" type="Label" parent="CanvasLayer/BossTalkUI"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -450.0
+offset_top = -330.0
+offset_right = 450.0
+offset_bottom = -261.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 32
+autowrap_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/BossTalkUI"]
+visible = false
+custom_minimum_size = Vector2(300, 80)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -150.0
+offset_top = 500.0
+offset_right = 150.0
+offset_bottom = 582.0
+grow_horizontal = 2
+theme_override_constants/separation = 16
+
+[node name="RetryButton" type="Button" parent="CanvasLayer/BossTalkUI/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "まだ働く"
+
+[node name="TitleButton" type="Button" parent="CanvasLayer/BossTalkUI/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "帰宅する"
+
+[node name="BossVoicePlayer" type="AudioStreamPlayer" parent="CanvasLayer/BossTalkUI"]
 
 [node name="Boss" parent="." instance=ExtResource("3_r0du0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.6883764, 0, -9.088512)
@@ -443,4 +506,12 @@ stream = ExtResource("8_03owx")
 [node name="PickupSE" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("8_trn2v")
 
+[node name="TypeTimer" type="Timer" parent="."]
+
+[node name="BossVoice" type="AudioStreamPlayer" parent="."]
+
+[node name="GameOverSE" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_wkp8b")
+
 [connection signal="finished" from="ClickSE" to="." method="_on_click_se_finished"]
+[connection signal="timeout" from="TypeTimer" to="." method="_on_type_timer_timeout"]
