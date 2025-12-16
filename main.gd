@@ -105,7 +105,8 @@ func add_score():
 # 7. UI更新
 # =========================================================
 func update_ui():
-	score_label.text = "ゴミ：" + str(score)
+	var remaining = TOTAL_TRASH_COUNT - score
+	score_label.text = "残りゴミ：" + str(remaining)
 	timer_label.text = "定時まで：" + "%.1f" % game_time
 
 
