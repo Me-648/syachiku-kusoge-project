@@ -113,6 +113,7 @@ func update_ui():
 # 8. ゲームオーバー
 # =========================================================
 func _game_over():
+	$BGM.stop()
 	if is_game_over:
 		return
 
@@ -123,6 +124,7 @@ func _game_over():
 
 
 func game_over_by_boss():
+	$BGM.stop()
 	if is_game_over:
 		return
 
@@ -172,6 +174,7 @@ func spawn_trash_items():
 # 10. ゲームクリア
 # =========================================================
 func _game_clear():
+	$BGM.stop()
 	is_game_over = true
 	timer_label.text = "GAME CLEAR!"
 	_show_result("定時に間に合った！\nおつかれさま！")

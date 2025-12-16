@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://cqvabsuo5vu44"]
+[gd_scene load_steps=5 format=3 uid="uid://cqvabsuo5vu44"]
 
 [ext_resource type="Script" uid="uid://odd02nb1qjpw" path="res://Title.gd" id="1_c0dwi"]
 [ext_resource type="AudioStream" uid="uid://blyhouiqmglaq" path="res://sounds/決定ボタンを押す32.mp3" id="2_ax32a"]
+[ext_resource type="AudioStream" uid="uid://c8f53db6oei2f" path="res://sounds/Restart_2.mp3" id="3_quvj1"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c0dwi"]
 bg_color = Color(0.19434929, 0.19434926, 0.19434926, 1)
@@ -147,3 +148,8 @@ text = "閉じる"
 
 [node name="UISound" type="AudioStreamPlayer" parent="Control"]
 stream = ExtResource("2_ax32a")
+
+[node name="BGM" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_quvj1")
+volume_db = -10.0
+autoplay = true
