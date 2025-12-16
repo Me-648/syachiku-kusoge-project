@@ -30,7 +30,7 @@ var boss_talk_list : Array = [
 # タイプライター
 var talk_text := ""
 var talk_index := 0
-var talk_speed := 0.06
+var talk_speed := 0.12
 var is_talking := false
 var current_boss_talk_index := -1
 
@@ -48,7 +48,7 @@ var current_boss_talk_index := -1
 
 @onready var boss_ui = $CanvasLayer/BossTalkUI
 @onready var boss_text_label: Label = boss_ui.get_node("TextLabel")
-@onready var boss_voice_player: AudioStreamPlayer = boss_ui.get_node("VoicePlayer")
+@onready var boss_voice_player: AudioStreamPlayer = boss_ui.get_node("BossVoicePlayer")
 
 
 @onready var type_timer: Timer = $TypeTimer
@@ -245,7 +245,15 @@ func _on_type_timer_timeout():
 # 15. ボイス
 # =========================================================
 func _play_boss_voice(index: int):
-	var path = "res://sounds/boss_talk%d.ogg" % (index + 1)
-	if ResourceLoader.exists(path):
-		boss_voice_player.stream = load(path)
-		boss_voice_player.play()
+	var path = "res://voice/yukumo_%04d.mp3" % (index + 1)
+	print("VOICE TRY:", path)
+	print("EXISTS:", ResourceLoader.exists(path))
+
+	if not ResourceLoader.exists(path):
+		return
+
+	boss_voice_player.stream = load(path)
+	print("STREAM:", boss_voice_player.stream)
+
+	boss_voice_player.play()
+	print("PLAY CALLED")
