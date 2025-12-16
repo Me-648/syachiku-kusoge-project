@@ -10,6 +10,8 @@ var is_game_over: bool = false
 const TOTAL_TRASH_COUNT := 10
 var trash_scene := preload("res://TrashItem.tscn")
 
+var is_deciding := false
+
 
 # =========================================================
 # 2. ボス長話
@@ -197,12 +199,28 @@ func _show_result(msg: String):
 var next_scene := ""
 
 func _on_retry_pressed():
+	if is_deciding:
+		return
+	is_deciding = true
+
+	retry_button.disabled = true
+	title_button.disabled = true
+
 	next_scene = get_tree().current_scene.scene_file_path
 	$ClickSE.play()
 
+
 func _on_title_pressed():
+	if is_deciding:
+		return
+	is_deciding = true
+
+	retry_button.disabled = true
+	title_button.disabled = true
+
 	next_scene = "res://Title.tscn"
 	$ClickSE.play()
+
 
 func _on_click_se_finished():
 	if next_scene != "":
