@@ -175,6 +175,7 @@ func _game_clear():
 	is_game_over = true
 	timer_label.text = "GAME CLEAR!"
 	_show_result("定時に間に合った！\nおつかれさま！")
+	$ClearSE.play()
 
 
 # =========================================================
