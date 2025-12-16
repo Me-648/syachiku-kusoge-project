@@ -1,13 +1,24 @@
-[gd_scene load_steps=5 format=3 uid="uid://cqvabsuo5vu44"]
+[gd_scene load_steps=7 format=3 uid="uid://cqvabsuo5vu44"]
 
 [ext_resource type="Script" uid="uid://odd02nb1qjpw" path="res://Title.gd" id="1_c0dwi"]
+[ext_resource type="Texture2D" uid="uid://c3kl78mo1lwip" path="res://assets/title.png" id="1_e4n62"]
 [ext_resource type="AudioStream" uid="uid://blyhouiqmglaq" path="res://sounds/決定ボタンを押す32.mp3" id="2_ax32a"]
 [ext_resource type="AudioStream" uid="uid://c8f53db6oei2f" path="res://sounds/Restart_2.mp3" id="3_quvj1"]
+[ext_resource type="Texture2D" uid="uid://bj88618eav6su" path="res://assets/title2.png" id="3_rg4ux"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c0dwi"]
 bg_color = Color(0.19434929, 0.19434926, 0.19434926, 1)
 
 [node name="CanvasLayer" type="CanvasLayer"]
+
+[node name="TextureRect" type="TextureRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_e4n62")
+expand_mode = 2
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
@@ -69,6 +80,16 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_c0dwi")
 
+[node name="TextureRect" type="TextureRect" parent="Control/HowToPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_rg4ux")
+expand_mode = 2
+
 [node name="HowToLabel" type="Label" parent="Control/HowToPanel"]
 layout_mode = 1
 anchors_preset = 5
@@ -108,6 +129,16 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_c0dwi")
+
+[node name="TextureRect" type="TextureRect" parent="Control/Credit"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_rg4ux")
+expand_mode = 2
 
 [node name="CreditLabel" type="Label" parent="Control/Credit"]
 layout_mode = 1
