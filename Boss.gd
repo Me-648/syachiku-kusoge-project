@@ -1,6 +1,6 @@
 extends CharacterBody3D
 
-const SPEED = 4.5
+var speed := 4.5
 
 @onready var main_node = get_tree().root.get_node("Main")
 var player_node: CharacterBody3D = null
@@ -18,6 +18,8 @@ func _ready():
 		set_process(false)
 	else:
 		print("Boss ready! Player found at:", player_node.global_position)
+	
+	speed = Global.boss_speed
 
 func _physics_process(delta):
 	if not player_node or main_node.is_game_over:
@@ -34,8 +36,8 @@ func _physics_process(delta):
 	direction_vector.y = 0
 	var direction = direction_vector.normalized()
 	
-	velocity.x = direction.x * SPEED
-	velocity.z = direction.z * SPEED
+	velocity.x = direction.x * speed
+	velocity.z = direction.z * speed
 	
 	move_and_slide()
 	

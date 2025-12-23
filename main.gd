@@ -7,7 +7,7 @@ var score: int = 0
 var game_time: float = 20.0
 var is_game_over: bool = false
 
-const TOTAL_TRASH_COUNT := 10
+var total_trash_count := 0
 var trash_scene := preload("res://TrashItem.tscn")
 
 var is_deciding := false
@@ -60,6 +60,9 @@ var current_boss_talk_index := -1
 # 4. 初期化
 # =========================================================
 func _ready():
+	total_trash_count = Global.total_trash_count
+	game_time = Global.time_limit
+	
 	randomize()
 	update_ui()
 	spawn_trash_items()
@@ -72,6 +75,8 @@ func _ready():
 
 	boss_ui.visible = false
 	result_ui.visible = false
+	
+	game_time = Global.time_limit
 
 
 # =========================================================
@@ -84,7 +89,7 @@ func _process(delta: float):
 	game_time -= delta
 	update_ui()
 
-	if score >= TOTAL_TRASH_COUNT:
+	if score >= total_trash_count:
 		_game_clear()
 	elif game_time <= 0.0:
 		game_time = 0.0
@@ -107,7 +112,7 @@ func add_score():
 # 7. UI更新
 # =========================================================
 func update_ui():
-	var remaining = TOTAL_TRASH_COUNT - score
+	var remaining = total_trash_count - score
 	score_label.text = "残りゴミ：" + str(remaining)
 	timer_label.text = "定時まで：" + "%.1f" % game_time
 
@@ -149,9 +154,9 @@ func spawn_trash_items():
 
 	var spawned := 0
 	var attempts := 0
-	var max_attempts := TOTAL_TRASH_COUNT * 10
+	var max_attempts := total_trash_count * 10
 
-	while spawned < TOTAL_TRASH_COUNT and attempts < max_attempts:
+	while spawned < total_trash_count and attempts < max_attempts:
 		attempts += 1
 		var x = randf_range(-9.0, 9.0)
 		var z = randf_range(-9.0, 9.0)
