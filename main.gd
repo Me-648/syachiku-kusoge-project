@@ -103,7 +103,7 @@ func add_score():
 	if is_game_over:
 		return
 	score += 1
-	game_time += 1.0
+	game_time += Global.time_bouns
 	$PickupSE.play()
 	update_ui()
 

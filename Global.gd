@@ -12,22 +12,27 @@ var difficulty: Difficulty = Difficulty.NORMAL
 var boss_speed := 4.5
 var time_limit := 20.0
 var total_trash_count := 10
+var time_bouns := 1.0
 
 func apply_difficulty():
 	match difficulty:
 		Difficulty.EASY:
-			boss_speed = 3.0
+			boss_speed = 3.5
 			time_limit = 25.0
 			total_trash_count = 5
+			time_bouns = 1.5
 		Difficulty.NORMAL:
-			boss_speed = 4.0
+			boss_speed = 4.3
 			time_limit = 20.0
 			total_trash_count = 10
+			time_bouns = 1.0
 		Difficulty.HARD:
-			boss_speed = 4.5
+			boss_speed = 4.7
 			time_limit = 15.0
 			total_trash_count = 12
+			time_bouns = 0.5
 		Difficulty.VERY_HARD:
-			boss_speed = 5.0
-			time_limit = 12.0
-			total_trash_count = 15
+			boss_speed = 5.5
+			time_limit = 10.0
+			total_trash_count = 7
+			time_bouns = 0.2
