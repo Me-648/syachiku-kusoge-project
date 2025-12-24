@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://dmurky4qj1xnm"]
+[gd_scene load_steps=38 format=3 uid="uid://dmurky4qj1xnm"]
 
 [ext_resource type="Script" uid="uid://cf6vfql8wtx0y" path="res://player.gd" id="1_glv2v"]
 [ext_resource type="Script" uid="uid://b3bg8isg18qtr" path="res://main.gd" id="1_r0du0"]
@@ -12,6 +12,7 @@
 [ext_resource type="AudioStream" uid="uid://bsr7ft3q8qdlm" path="res://sounds/ショック1.mp3" id="10_wkp8b"]
 [ext_resource type="AudioStream" uid="uid://djs6vq8dh13bi" path="res://sounds/シャキーン1.mp3" id="11_20pc6"]
 [ext_resource type="AudioStream" uid="uid://dmco3g0xuppos" path="res://sounds/追いかけっこキャッハー.mp3" id="12_5vvyt"]
+[ext_resource type="AudioStream" uid="uid://cmuj48ge6win6" path="res://sounds/今後ろに誰かが....mp3" id="13_c6i3y"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3dxm6"]
 albedo_color = Color(0.39308554, 0.3930855, 0.39308548, 1)
@@ -522,7 +523,9 @@ stream = ExtResource("11_20pc6")
 [node name="BGM" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("12_5vvyt")
 volume_db = -10.0
-autoplay = true
+
+[node name="BlackBGM" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("13_c6i3y")
 
 [connection signal="finished" from="ClickSE" to="." method="_on_click_se_finished"]
 [connection signal="timeout" from="TypeTimer" to="." method="_on_type_timer_timeout"]

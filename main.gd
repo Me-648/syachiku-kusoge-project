@@ -29,6 +29,10 @@ var boss_talk_list : Array = [
 	"ずっと思っていたが、切り替えの遅さが致命的だ。ひとつ終わるたびに止まる、その無駄な間が積み重なって今日の遅れになった。流れを断ち切る動きしかしていない。時間が詰まる場面では、その弱点がはっきり露呈する。テンポよく次へ移れないなら、仕事が回るわけないだろう。君のペースに全体を合わせる余裕はないんだ。"
 ]
 
+var black_thanks_talk := [
+	"いやぁ、足速かったね。そんなに避けられるとは思わなかったよ。正直、ちょっと楽しかった。今日はもういい。帰っていいよ。……また来てくれると助かるな。"
+]
+
 # タイプライター
 var talk_text := ""
 var talk_index := 0
@@ -63,6 +67,12 @@ func _ready():
 	total_trash_count = Global.total_trash_count
 	game_time = Global.time_limit
 	
+	if Global.difficulty == Global.Difficulty.BLACK:
+		$BlackBGM.play()
+	else:
+		$BGM.play()
+
+	
 	randomize()
 	update_ui()
 	spawn_trash_items()
@@ -82,18 +92,31 @@ func _ready():
 # =========================================================
 # 5. メインループ
 # =========================================================
-func _process(delta: float):
+func _process(delta):
 	if is_game_over:
 		return
-
-	game_time -= delta
-	update_ui()
-
+		
 	if score >= total_trash_count:
-		_game_clear()
-	elif game_time <= 0.0:
-		game_time = 0.0
-		_game_over()
+		if Global.difficulty == Global.Difficulty.BLACK:
+			score = 0
+			spawn_trash_items()
+		else:
+			_game_clear()
+
+	if Global.difficulty != Global.Difficulty.BLACK:
+		game_time -= delta
+		update_ui()
+
+		if score >= total_trash_count:
+			_game_clear()
+		elif game_time <= 0.0:
+			game_time = 0.0
+			_game_over()
+	else:
+		update_ui()
+		
+
+
 
 
 # =========================================================
@@ -112,9 +135,14 @@ func add_score():
 # 7. UI更新
 # =========================================================
 func update_ui():
-	var remaining = total_trash_count - score
-	score_label.text = "残りゴミ：" + str(remaining)
-	timer_label.text = "定時まで：" + "%.1f" % game_time
+	if Global.difficulty == Global.Difficulty.BLACK:
+		score_label.text = "仕事：ゴミを拾う"
+		timer_label.text = "上司から逃げろ"
+	else:
+		var remaining = total_trash_count - score
+		score_label.text = "残りゴミ：" + str(remaining)
+		timer_label.text = "定時まで：" + "%.1f" % game_time
+
 
 
 # =========================================================
@@ -122,6 +150,8 @@ func update_ui():
 # =========================================================
 func _game_over():
 	$BGM.stop()
+	$BlackBGM.stop()
+
 	if is_game_over:
 		return
 
@@ -133,15 +163,21 @@ func _game_over():
 
 func game_over_by_boss():
 	$BGM.stop()
+	$BlackBGM.stop()
+
 	if is_game_over:
 		return
 
 	is_game_over = true
-	timer_label.text = "残業確定"
-	_show_result("上司に捕まった！\n残業確定…")
 
-	$GameOverSE.play()
-	_start_boss_talk()
+	if Global.difficulty == Global.Difficulty.BLACK:
+		_show_result("Thank you for playing")
+		_start_black_thanks_talk()
+	else:
+		timer_label.text = "残業確定"
+		_show_result("上司に捕まった！\n残業確定…")
+		$GameOverSE.play()
+		_start_boss_talk()
 
 
 # =========================================================
@@ -183,10 +219,14 @@ func spawn_trash_items():
 # =========================================================
 func _game_clear():
 	$BGM.stop()
+	$BlackBGM.stop()
 	is_game_over = true
 	timer_label.text = "GAME CLEAR!"
 	_show_result("定時に間に合った！\nおつかれさま！")
 	$ClearSE.play()
+	
+	if Global.difficulty == Global.Difficulty.VERY_HARD:
+		Global.black_company_unlocked = true
 
 
 # =========================================================
@@ -285,3 +325,15 @@ func _play_boss_voice(index: int):
 
 	boss_voice_player.play()
 	print("PLAY CALLED")
+
+
+func _start_black_thanks_talk():
+	talk_text = black_thanks_talk[0]
+	talk_index = 0
+	is_talking = true
+
+	boss_ui.visible = true
+	boss_text_label.text = ""
+
+	type_timer.wait_time = talk_speed
+	type_timer.start()

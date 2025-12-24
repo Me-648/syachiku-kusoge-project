@@ -19,6 +19,7 @@ extends Control
 @onready var very_hard_button = $Panel/VBoxContainer/Button4
 @onready var back_button = $Panel/VBoxContainer/Button5
 
+@onready var black_button = $Panel/VBoxContainer/BlackButton
 
 
 func _ready():
@@ -35,7 +36,13 @@ func _ready():
 	very_hard_button.pressed.connect(_on_very_hard_pressed)
 	back_button.pressed.connect(_on_back_pressed)
 	
+	black_button.pressed.connect(_on_black_pressed)
+	
 	difficulty_panel.visible = false
+	
+	very_hard_button.visible = true
+	$Panel/VBoxContainer/BlackButton.visible = Global.black_company_unlocked
+
 
 	
 
@@ -94,3 +101,9 @@ func _on_very_hard_pressed():
 func _on_back_pressed():
 	$UISound.play()
 	difficulty_panel.visible = false
+	
+func _on_black_pressed():
+	$UISound.play()
+	Global.difficulty = Global.Difficulty.BLACK
+	Global.apply_difficulty()
+	get_tree().change_scene_to_file("res://Main.tscn")

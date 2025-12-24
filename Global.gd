@@ -1,10 +1,13 @@
 extends Node
 
+var black_company_unlocked := false
+
 enum Difficulty {
 	EASY,
 	NORMAL,
 	HARD,
-	VERY_HARD
+	VERY_HARD,
+	BLACK
 }
 
 var difficulty: Difficulty = Difficulty.NORMAL
@@ -32,7 +35,12 @@ func apply_difficulty():
 			total_trash_count = 12
 			time_bouns = 0.5
 		Difficulty.VERY_HARD:
-			boss_speed = 5.5
+			boss_speed = 3.5
 			time_limit = 10.0
-			total_trash_count = 7
+			total_trash_count = 1
 			time_bouns = 0.2
+		Difficulty.BLACK:
+			boss_speed = 3.0
+			time_limit = 5.0
+			total_trash_count = 25
+			time_bouns = -0.5

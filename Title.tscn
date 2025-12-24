@@ -179,7 +179,6 @@ grow_vertical = 0
 text = "閉じる"
 
 [node name="Panel" type="Panel" parent="Control"]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -216,10 +215,10 @@ anchors_preset = 13
 anchor_left = 0.5
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -39.5
-offset_top = 250.0
-offset_right = 39.5
-offset_bottom = 250.0
+offset_left = -43.5
+offset_top = 225.0
+offset_right = 43.5
+offset_bottom = 225.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 32
@@ -239,6 +238,11 @@ text = "ハード"
 [node name="Button4" type="Button" parent="Control/Panel/VBoxContainer"]
 layout_mode = 2
 text = "ベリーハード"
+
+[node name="BlackButton" type="Button" parent="Control/Panel/VBoxContainer"]
+visible = false
+layout_mode = 2
+text = "ブラック企業"
 
 [node name="Button5" type="Button" parent="Control/Panel/VBoxContainer"]
 layout_mode = 2
