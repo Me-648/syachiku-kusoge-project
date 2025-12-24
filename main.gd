@@ -12,6 +12,9 @@ var trash_scene := preload("res://TrashItem.tscn")
 
 var is_deciding := false
 
+# ブラック企業モード用の経過時間
+var black_elapsed_time: float = 0.0
+
 
 # =========================================================
 # 2. ボス長話
@@ -73,6 +76,7 @@ func _ready():
 	if Global.difficulty == Global.Difficulty.BLACK:
 		world_env.environment = black_env
 		$BlackBGM.play()
+		black_elapsed_time = 0.0  # ブラック企業モードの経過時間を初期化
 	else:
 		$BGM.play()
 
@@ -102,8 +106,9 @@ func _process(delta):
 		
 	if score >= total_trash_count:
 		if Global.difficulty == Global.Difficulty.BLACK:
-			score = 0
-			spawn_trash_items()
+			# 次の目標値を設定してから新しいゴミを追加
+			total_trash_count += Global.total_trash_count
+			spawn_additional_trash_items()  # 追加配置用の関数に変更
 		else:
 			_game_clear()
 
@@ -117,6 +122,8 @@ func _process(delta):
 			game_time = 0.0
 			_game_over()
 	else:
+		# ブラック企業モードでは経過時間をカウント
+		black_elapsed_time += delta
 		update_ui()
 		
 
@@ -130,7 +137,11 @@ func add_score():
 	if is_game_over:
 		return
 	score += 1
-	game_time += Global.time_bouns
+	
+	# ブラック企業モード以外では時間ボーナスを追加
+	if Global.difficulty != Global.Difficulty.BLACK:
+		game_time += Global.time_bouns
+	
 	$PickupSE.play()
 	update_ui()
 
@@ -140,14 +151,14 @@ func add_score():
 # =========================================================
 func update_ui():
 	if Global.difficulty == Global.Difficulty.BLACK:
-		score_label.text = "仕事:ゴミを拾う"
-		timer_label.text = "上司から逃げろ"
+		# 左上：拾ったゴミの数
+		score_label.text = "拾ったゴミ: " + str(score)
+		# 右上：経過時間
+		timer_label.text = "経過時間: " + "%.1f" % black_elapsed_time
 		
-		# 方法1: modulateを使う(最も確実)
+		# 文字色を白に
 		score_label.modulate = Color.WHITE
 		timer_label.modulate = Color.WHITE
-		
-		# 方法2: add_theme_color_overrideと組み合わせる
 		score_label.add_theme_color_override("font_color", Color.WHITE)
 		timer_label.add_theme_color_override("font_color", Color.WHITE)
 		
@@ -188,9 +199,9 @@ func game_over_by_boss():
 	is_game_over = true
 
 	if Global.difficulty == Global.Difficulty.BLACK:
-		_show_result("Thank you for playing")
-		_play_black_voice()
-		_start_black_thanks_talk()
+		_show_result("Thank you for playing!!")
+		_play_boss_voice_black()  # ブラック企業モード専用の音声を再生
+		_start_black_catch_talk()  # 捕まった時の会話を表示
 	else:
 		timer_label.text = "残業確定"
 		_show_result("上司に捕まった！\n残業確定…")
@@ -231,6 +242,35 @@ func spawn_trash_items():
 			spawned += 1
 
 	print("ゴミ配置：%d" % spawned)
+
+
+# ブラック企業モード用：既存のゴミを削除せず、追加で配置する
+func spawn_additional_trash_items():
+	var spawned := 0
+	var attempts := 0
+	var target_count: int = Global.total_trash_count  # 型を明示的に指定
+	var max_attempts: int = target_count * 10  # 型を明示的に指定
+
+	while spawned < target_count and attempts < max_attempts:
+		attempts += 1
+		var x = randf_range(-9.0, 9.0)
+		var z = randf_range(-9.0, 9.0)
+
+		var from = Vector3(x, 1.0, z)
+		var to = Vector3(x, 0.0, z)
+
+		var ray = PhysicsRayQueryParameters3D.create(from, to)
+		ray.collision_mask = 1
+
+		var hit = get_world_3d().direct_space_state.intersect_ray(ray)
+
+		if hit and hit.collider.name.contains("Floor"):
+			var t = trash_scene.instantiate()
+			t.position = Vector3(x, 0.15, z)
+			add_child(t)
+			spawned += 1
+
+	print("ゴミ追加配置：%d" % spawned)
 
 
 # =========================================================
@@ -283,8 +323,8 @@ func _on_retry_pressed():
 
 
 func _on_title_pressed():
-	if Global.difficulty == Global.Difficulty.BLACK:
-		Global.black_company_unlocked = false
+	# ブラック企業モード解放は永続化（一度解放したらずっと表示）
+	# Global.black_company_unlocked = false を削除
 		
 	if is_deciding:
 		return
@@ -368,8 +408,32 @@ func _start_black_thanks_talk():
 	type_timer.wait_time = talk_speed
 	type_timer.start()
 
+
 func _play_black_voice():
 	var path = "res://voice/black_0001.mp3"
 	if ResourceLoader.exists(path):
 		boss_voice_player.stream = load(path)
 		boss_voice_player.play()
+
+
+# ブラック企業モードで上司に捕まった時の音声
+func _play_boss_voice_black():
+	var path = "res://voice/yukumo_0001_Black.mp3"
+	print("BLACK VOICE TRY:", path)
+	print("EXISTS:", ResourceLoader.exists(path))
+	
+	if not ResourceLoader.exists(path):
+		print("警告: yukumo_0001_Black.mp3が見つかりません")
+		return
+	
+	boss_voice_player.stream = load(path)
+	boss_voice_player.play()
+	print("BLACK VOICE PLAY CALLED")
+
+
+# ブラック企業モードで捕まった時の会話（オプション）
+func _start_black_catch_talk():
+	# 捕まった時専用のセリフがあれば、ここに追加できます
+	# 例: talk_text = "捕まったな。まあ、頑張ったよ。"
+	# とりあえず感謝の言葉を流用
+	_start_black_thanks_talk()
