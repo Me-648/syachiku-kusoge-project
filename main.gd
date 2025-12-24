@@ -59,6 +59,9 @@ var current_boss_talk_index := -1
 
 @onready var type_timer: Timer = $TypeTimer
 
+@onready var world_env := $WorldEnvironment
+var black_env := preload("res://env/BlackEnvironment.tres")
+
 
 # =========================================================
 # 4. 初期化
@@ -68,6 +71,7 @@ func _ready():
 	game_time = Global.time_limit
 	
 	if Global.difficulty == Global.Difficulty.BLACK:
+		world_env.environment = black_env
 		$BlackBGM.play()
 	else:
 		$BGM.play()
@@ -136,12 +140,25 @@ func add_score():
 # =========================================================
 func update_ui():
 	if Global.difficulty == Global.Difficulty.BLACK:
-		score_label.text = "仕事：ゴミを拾う"
+		score_label.text = "仕事:ゴミを拾う"
 		timer_label.text = "上司から逃げろ"
+		
+		# 方法1: modulateを使う(最も確実)
+		score_label.modulate = Color.WHITE
+		timer_label.modulate = Color.WHITE
+		
+		# 方法2: add_theme_color_overrideと組み合わせる
+		score_label.add_theme_color_override("font_color", Color.WHITE)
+		timer_label.add_theme_color_override("font_color", Color.WHITE)
+		
 	else:
 		var remaining = total_trash_count - score
-		score_label.text = "残りゴミ：" + str(remaining)
-		timer_label.text = "定時まで：" + "%.1f" % game_time
+		score_label.text = "残りゴミ:" + str(remaining)
+		timer_label.text = "定時まで:" + "%.1f" % game_time
+		
+		# 通常モードでは元に戻す
+		score_label.remove_theme_color_override("font_color")
+		timer_label.remove_theme_color_override("font_color")
 
 
 
@@ -172,12 +189,14 @@ func game_over_by_boss():
 
 	if Global.difficulty == Global.Difficulty.BLACK:
 		_show_result("Thank you for playing")
+		_play_black_voice()
 		_start_black_thanks_talk()
 	else:
 		timer_label.text = "残業確定"
 		_show_result("上司に捕まった！\n残業確定…")
 		$GameOverSE.play()
 		_start_boss_talk()
+
 
 
 # =========================================================
@@ -235,7 +254,15 @@ func _game_clear():
 func _show_result(msg: String):
 	result_label.text = msg
 	result_ui.visible = true
-	retry_button.grab_focus()
+
+	if Global.difficulty == Global.Difficulty.BLACK:
+		retry_button.visible = false
+	else:
+		retry_button.visible = true
+
+	title_button.visible = true
+	title_button.grab_focus()
+
 
 
 # =========================================================
@@ -256,6 +283,9 @@ func _on_retry_pressed():
 
 
 func _on_title_pressed():
+	if Global.difficulty == Global.Difficulty.BLACK:
+		Global.black_company_unlocked = false
+		
 	if is_deciding:
 		return
 	is_deciding = true
@@ -337,3 +367,9 @@ func _start_black_thanks_talk():
 
 	type_timer.wait_time = talk_speed
 	type_timer.start()
+
+func _play_black_voice():
+	var path = "res://voice/black_0001.mp3"
+	if ResourceLoader.exists(path):
+		boss_voice_player.stream = load(path)
+		boss_voice_player.play()

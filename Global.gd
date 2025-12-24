@@ -35,9 +35,9 @@ func apply_difficulty():
 			total_trash_count = 12
 			time_bouns = 0.5
 		Difficulty.VERY_HARD:
-			boss_speed = 3.5
+			boss_speed = 5.5
 			time_limit = 10.0
-			total_trash_count = 1
+			total_trash_count = 7
 			time_bouns = 0.2
 		Difficulty.BLACK:
 			boss_speed = 3.0
